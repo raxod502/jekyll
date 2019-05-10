@@ -153,11 +153,7 @@ module Jekyll
 
     private
     def copy_file(dest_path)
-      if @site.safe || Jekyll.env == "production"
-        FileUtils.cp(path, dest_path)
-      else
-        FileUtils.copy_entry(path, dest_path)
-      end
+      FileUtils.cp(path, dest_path)
 
       unless File.symlink?(dest_path)
         File.utime(self.class.mtimes[path], self.class.mtimes[path], dest_path)
